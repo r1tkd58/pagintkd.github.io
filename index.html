@@ -2,301 +2,831 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- ==================== HEADERS DE SEGURIDAD ==================== -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://i.imgur.com https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' https://i.imgur.com data:; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self'; frame-src 'none';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' https://i.imgur.com data:; font-src 'self' https:;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <!-- ==================== TÍTULO Y DEPENDENCIAS ==================== -->
+    
     <title>Taekwondo FES Iztacala</title>
-    <!-- Tailwind CSS (versión fija) -->
-    <script src="https://cdn.tailwindcss.com/3.3.5"></script>
-    <!-- Font Awesome (versión fija con integridad SRI) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Google Fonts -->
+    
+    <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans|Raleway|Kanit" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
         
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #000000 0%, #1a365d 100%);
-            min-height: 100vh;
-            color: white;
-            overflow-x: hidden;
+        :root {
+            --unam-azul: #002D72;
+            --unam-azul-claro: #004499;
+            --unam-oro: #FFC107;
+            --unam-oro-oscuro: #FFB300;
+            --gris-oscuro: #1a1a1a;
+            --gris-claro: #f8f8f8;
+            --blanco: #ffffff;
+            --texto: #333;
+            --texto-claro: #666;
         }
         
-        .hero-container {
-            position: relative;
-            height: 100vh;
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', 'Lato', sans-serif;
+            line-height: 1.6;
+            color: var(--texto);
+            margin: 0;
+            overflow-x: hidden;
+            background: var(--gris-claro);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .navbar-default {
+            background: var(--blanco);
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,45,114,0.15);
+            min-height: 70px;
+            margin-bottom: 0;
+            transition: all 0.3s ease;
+        }
+        .navbar-brand {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--unam-azul) !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .navbar-nav > li > a {
+            color: var(--texto) !important;
+            font-weight: 600;
+            padding: 25px 20px !important;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .navbar-nav > li > a:hover {
+            background: transparent !important;
+            color: var(--unam-azul) !important;
+        }
+        .navbar-toggle {
+            border: 2px solid var(--unam-azul);
+        }
+        .navbar-toggle .icon-bar {
+            background: var(--unam-azul);
+        }
+        
+        .banner-hero {
+            width: 100%;
+            height: 65vh;
+            background: url('https://i.imgur.com/Ffmf8kP.png') center/cover;
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            padding: 1rem; 
+            color: var(--unam-oro);
+            text-align: center;
+            position: relative;
+        }
+        .banner-hero h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            text-shadow: 4px 4px 12px rgba(0,0,0,0.9);
+            margin: 0;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         
-        .hero-bg {
+        .bloque-breadcrumb {
+            background: var(--gris-claro);
+            padding: 25px 0;
+            border-bottom: 3px solid var(--unam-azul);
+        }
+        .breadcrumb ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .breadcrumb li {
+            color: var(--texto-claro);
+            font-weight: 500;
+            margin: 0 10px;
+        }
+        .breadcrumb a {
+            color: var(--unam-azul);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .breadcrumb li.c-weight-bold {
+            color: var(--unam-azul);
+            font-weight: 700;
+        }
+        
+        .spacer-100 { height: 100px; }
+        .spacer-50 { height: 50px; }
+        .spacer-40 { height: 40px; }
+        .spacer-20 { height: 20px; }
+        
+        .title {
+            margin-bottom: 50px;
+        }
+        .title h1 {
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: var(--unam-azul);
+            margin: 0 0 25px 0;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .title h1:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--unam-azul), var(--unam-oro));
+            margin: 20px auto 0;
+            border-radius: 3px;
+        }
+        
+        .content-intro {
+            font-size: 1.2rem;
+            color: var(--texto-claro);
+            max-width: 900px;
+            margin: 0 auto 40px;
+            line-height: 1.9;
+            text-align: center;
+        }
+        .content-intro p {
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+        
+        button, .btn {
+            background: linear-gradient(45deg, var(--unam-azul), var(--unam-azul-claro));
+            color: var(--unam-oro);
+            border: 2px solid var(--unam-azul);
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 8px 25px rgba(0,45,114,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        button:hover, .btn:hover {
+            background: linear-gradient(45deg, var(--unam-oro), var(--unam-oro-oscuro));
+            color: var(--unam-azul);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(255,193,7,0.5);
+            border-color: var(--unam-oro);
+        }
+        
+        .containerimage {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            margin-bottom: 50px;
+            height: 380px;
+            border: 3px solid transparent;
+        }
+        .containerimage:hover {
+            transform: translateY(-20px) scale(1.02);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.25);
+            border-color: var(--unam-oro);
+        }
+        .containerimage img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        .containerimage:hover img {
+            transform: scale(1.1) rotate(1deg);
+        }
+        .overlay {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://i.imgur.com/Ffmf8kP.png'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.3;
-            z-index: 1;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 800px;
-            padding: 2rem;
-        }
-        
-        .main-title {
-            font-size: 4rem;
-            font-weight: 900;
-            margin-bottom: 2rem;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
-            color: gold; 
-        }
-        
-        .social-links {
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,45,114,0.95), rgba(0,68,153,0.95));
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .social-link {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: white;
-            text-decoration: none;
-            font-size: 2rem;
-            transition: all 0.3s ease;
-            border: 3px solid rgba(255,255,255,0.2);
+            opacity: 0;
+            transition: all 0.5s ease;
+            text-align: center;
+            padding: 30px;
+        }
+        .containerimage:hover .overlay {
+            opacity: 1;
+        }
+        .overlay h2 {
+            color: var(--unam-oro);
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin: 0;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.9);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .hero-image {
+            background: url('https://i.imgur.com/Ffmf8kP.png') center/cover fixed;
+            min-height: 550px;
+            display: flex;
+            align-items: center;
             position: relative;
-            overflow: hidden;
+            color: var(--unam-oro);
+            margin: 100px 0;
+        }
+        .hero-text {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            text-shadow: 4px 4px 15px rgba(0,0,0,0.9);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .boxOferta {
+            background: rgba(255,255,255,0.98);
+            padding: 60px;
+            border-radius: 25px;
+            max-width: 500px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+            border: 3px solid var(--unam-oro);
+        }
+        .center-cinta {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .center-cinta li {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: rgba(0,45,114,0.05);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        .center-cinta li:hover {
+            background: rgba(0,45,114,0.15);
+            transform: translateX(10px);
+        }
+        .center-cinta strong {
+            color: var(--unam-azul);
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .center-cinta .horario {
+            color: var(--unam-oro-oscuro);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .center-cinta a {
+            color: var(--unam-azul);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.3rem;
+            display: block;
+            padding: 10px 0;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .center-cinta a:hover {
+            color: var(--unam-oro);
+            padding-left: 15px;
         }
         
-        .social-link::before {
+        footer {
+            background: var(--gris-oscuro);
+            color: var(--blanco);
+        }
+        .footerHeader {
+            background: linear-gradient(135deg, var(--unam-azul), var(--unam-azul-claro));
+            padding: 50px 0;
+            text-align: center;
+            position: relative;
+        }
+        .footerHeader::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #ff6b00, #ff0000, #ffd700);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
+            right: 0;
+            bottom: 0;
+            background: url('https://i.imgur.com/Ffmf8kP.png') center/cover;
+            opacity: 0.08;
         }
-        
-        .social-link:hover::before {
-            opacity: 1;
+        .footerHeader img {
+            max-height: 120px;
+            filter: brightness(0) invert(1);
+            position: relative;
+            z-index: 1;
         }
-        
-        .social-link:hover {
-            transform: translateY(-5px) scale(1.1);
-            border-color: transparent;
-            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.4);
+        .footerBottom {
+            background: #0d0d0d;
+            padding: 70px 0 50px;
+            text-align: center;
         }
-        
-        .instagram { background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045); }
-        .tiktok { background: linear-gradient(45deg, #000000, #00f2ea, #ff0050); }
-        
-        .floating-images {
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 3;
+        .footerBottom .container {
+            max-width: 900px;
         }
-        
-        .floating-image {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 3px solid rgba(255,255,255,0.1);
-            opacity: 0.8;
+        .footerBottom p {
+            font-size: 1.3rem;
+            margin-bottom: 60px;
+            color: #ccc;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .redes-sociales {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+        .redes-sociales a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--blanco);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 35px 20px;
+        }
+        .redes-sociales .icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--unam-azul), var(--unam-azul-claro));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            box-shadow: 0 20px 60px rgba(0,45,114,0.6);
             transition: all 0.5s ease;
+            border: 4px solid var(--unam-oro);
+        }
+        .redes-sociales .label {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-top: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--unam-oro);
+        }
+        .redes-sociales a:hover {
+            transform: translateY(-15px);
+        }
+        .redes-sociales a:hover .icon {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 35px 80px rgba(0,45,114,0.8);
+            background: linear-gradient(135deg, var(--unam-oro), var(--unam-oro-oscuro));
         }
         
-        .floating-image:hover {
-            opacity: 1;
-            transform: scale(1.1);
-            box-shadow: 0 15px 40px rgba(255, 107, 0, 0.6);
+        #top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--unam-azul), var(--unam-azul-claro));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            z-index: 1000;
+            box-shadow: 0 15px 40px rgba(0,45,114,0.5);
+            font-size: 1.8rem;
+            color: var(--unam-oro);
+            border: 3px solid var(--unam-oro);
+        }
+        #top:hover {
+            transform: translateY(-12px) scale(1.15);
+            box-shadow: 0 30px 70px rgba(0,45,114,0.7);
+            background: linear-gradient(135deg, var(--unam-oro), var(--unam-oro-oscuro));
+            color: var(--unam-azul);
         }
         
-        .floating-image img {
+      
+        .image-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            background: rgba(0,0,0,0.95);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+        }
+        .image-popup img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            border: 5px solid var(--unam-oro);
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+        }
+        .image-popup.show img {
+            transform: scale(1);
+        }
+        .image-popup.show {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        .close-popup {
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            color: var(--unam-oro);
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10001;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
+        }
+        .close-popup:hover {
+            color: white;
+            transform: scale(1.2);
+            background: rgba(255,193,7,0.3);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
-        /* Posiciones de las imágenes flotantes */
-        .img-1 { top: 5%; left: 45%; animation: float1 8s ease-in-out infinite; }
-        .img-2 { top: 15%; right: 5%; animation: float2 10s ease-in-out infinite 2s; }
-        .img-3 { bottom: 15%; left: 10%; animation: float3 9s ease-in-out infinite 1s; }
-        .img-4 { bottom: 25%; right: 10%; animation: float4 7s ease-in-out infinite 3s; }
-        .img-5 { top: 40%; left: 15%; animation: float5 11s ease-in-out infinite; }
-        .img-6 { top: 70%; right: 15%; animation: float1 8s ease-in-out infinite; }
-        .img-7 { bottom: 10%; left: 30%; animation: float2 10s ease-in-out infinite 2s; }
-        
-        @keyframes float1 {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-        
-        @keyframes float2 {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(25px) rotate(-5deg); }
-        }
-        
-        @keyframes float3 {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(3deg); }
-        }
-        
-        @keyframes float4 {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(20px) rotate(-3deg); }
-        }
-        
-        @keyframes float5 {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-25px) rotate(2deg); }
-        }
-        
-        /* Responsive */
         @media (max-width: 768px) {
-            .main-title {
-                font-size: 2.5rem;
+            .navbar-nav > li > a { 
+                padding: 20px 15px !important; 
+                text-align: center; 
+                font-size: 14px;
             }
-            
-            .social-link {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
+            .banner-hero { height: 55vh; }
+            .hero-text h1 { font-size: 2.8rem; }
+            .hero-image { 
+                background-attachment: scroll; 
+                margin: 70px 0; 
+                min-height: 450px;
             }
-            
-            .floating-image {
-                width: 80px; 
-                height: 80px;
+            .boxOferta { 
+                margin: 0 20px; 
+                padding: 40px 25px; 
             }
-            
-            .img-1 { top: 10%; left: 38%; }
-            .img-2 { top: 7%; right: 5%;}
-            .img-3 { bottom: 30%; left: 18%; }
-            .img-4 { bottom: 30%; right: 10%; }
-            .img-5 { top: 7%; left: 10%; }
-            .img-6 { top: 80%; right: 10%; }
-            .img-7 { bottom: 15%; left: 25%; }
+            .title h1 { font-size: 2.2rem; }
+            .containerimage { 
+                height: 300px; 
+                margin-bottom: 35px; 
+            }
+            .overlay h2 { font-size: 2rem; }
+            .redes-sociales { gap: 40px; }
+            .redes-sociales .icon { 
+                width: 100px; 
+                height: 100px; 
+                font-size: 2.8rem; 
+            }
+            .redes-sociales .label { font-size: 1.4rem; }
+            .close-popup {
+                top: 20px;
+                right: 20px;
+                font-size: 40px;
+                width: 50px;
+                height: 50px;
+            }
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- ==================== IMÁGENES FLOTANTES ==================== -->
-    <div class="floating-images">
-        <div class="floating-image img-1">
-            <img src="https://i.imgur.com/d0erNE7.jpeg" alt="Lealtad">
-            <p class="image-label">Lealtad</p>
-        </div>
-        <div class="floating-image img-2">
-            <img src="https://i.imgur.com/yLqGkdI.jpeg" alt="Confianza">
-            <p class="image-label">Confianza</p>
-        </div>
-        <div class="floating-image img-3">
-            <img src="https://i.imgur.com/Mbpix6V.jpeg" alt="Valor">
-            <p class="image-label">Valor</p> 
-        </div>
-        <div class="floating-image img-4">
-            <img src="https://i.imgur.com/lNxR3MG.jpeg" alt="Disciplina">
-            <p class="image-label">Disciplina</p> 
-        </div>
-        <div class="floating-image img-5">
-            <img src="https://i.imgur.com/1zfsch9.jpeg" alt="Actitud">
-            <p class="image-label">Actitud</p>
-        </div>
-        <div class="floating-image img-6">
-            <img src="https://i.imgur.com/A3ZvUc6.jpeg" alt="Perseverancia">
-            <p class="image-label">Perseverancia</p>
-        </div>
-        <div class="floating-image img-7">
-            <img src="https://i.imgur.com/yepz46O.png" alt="Salud">
-            <p class="image-label">Salud</p> 
-        </div>
-    </div>
 
-    <!-- ==================== CONTENIDO PRINCIPAL ==================== -->
-    <div class="hero-container">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <h1 class="main-title">
-                ÚNETE AL EQUIPO DE TAEKWONDO DE LA FES IZTACALA
-            </h1>
-            
-            <div class="social-links">
-                <a href="https://www.instagram.com/fes_iztacala_taekwondo/" class="social-link instagram" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.tiktok.com/@gonzalo_tkd" class="social-link tiktok" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-tiktok"></i>
-                </a>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">TAEKWONDO</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#equipo">Equipo</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
             </div>
         </div>
+    </nav>
+
+    <div class="banner-hero" id="inicio">
+        <h2>ÚNETE AL EQUIPO<br>DE TAEKWONDO<br>DE LA FES IZTACALA</h2>
     </div>
 
-    <!-- ==================== SCRIPTS CON SEGURIDAD ==================== -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.5/purify.min.js"></script>
+    <div class="bloque-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i> Inicio</a></li>
+                <li class="c-weight-bold">Taekwondo FES Iztacala</li>
+            </ul>
+        </div>
+    </div>
+
+    <section class="container fade-in">
+        <div class="spacer-100 hidden-xs spacer-50 visible-xs"></div>
+        <div class="text-center title">
+            <h1>TAEKWONDO FES IZTACALA</h1>
+        </div>
+        <div class="content-intro">
+            <p><strong>Únete a nuestro equipo donde aprenderas la marcialidad de este deporte y podras representar a la FES Iztacala en Juegos Universitarios, Campeonatos Nacionales Universitarios y de Federación.</strong></p>
+            <div class="text-center">
+                <button onclick="location.href='#equipo'">ACUDE AL GIMNASIO CENTRAL</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div style="position:relative; width:100%; padding-bottom:56.25%; overflow:hidden; border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+                    <img src="https://i.imgur.com/7UBExUn.png" alt="Taekwondo FES Iztacala" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="equipo">
+        <div class="spacer-100"></div>
+        <div class="text-center title">
+            <h1>🥋🔥👊</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="containerimage">
+                    <img src="https://i.imgur.com/DsyojDk.jpeg" alt="Perseverancia">
+                    <div class="overlay">
+                        <h2>PERSEVERANCIA</h2>
+                    </div>
+                </div>
+            </div>  
+            <div class="col-md-4 col-sm-6">
+                <div class="containerimage">
+                    <img src="https://i.imgur.com/wcOTPG3.jpeg" alt="Disciplina">
+                    <div class="overlay">
+                        <h2>DISCIPLINA</h2>
+                    </div>
+                </div>
+            </div>            
+            <div class="col-md-4 col-sm-6">
+                <div class="containerimage">
+                    <img src="https://i.imgur.com/d0erNE7.jpeg" alt="Lealtad">
+                    <div class="overlay">
+                        <h2>LEALTAD</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="containerimage">
+                    <img src="https://i.imgur.com/1zfsch9.jpeg" alt="Actitud">
+                    <div class="overlay">
+                        <h2>ACTITUD</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="containerimage">
+                    <img src="https://i.imgur.com/yLqGkdI.jpeg" alt="Confianza">
+                    <div class="overlay">
+                        <h2>CONFIANZA</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="containerimage">
+                    <img src="https://i.imgur.com/Mbpix6V.jpeg" alt="Valor">
+                    <div class="overlay">
+                        <h2>HONOR</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="containerimage">
+                    <img src="https://i.imgur.com/iUlDDYM.jpeg" alt="Enfoque">
+                    <div class="overlay">
+                        <h2>ENFOQUE</h2>
+                    </div>
+                </div>
+            </div>          
+            <div class="col-md-4 col-sm-6">
+                <div class="containerimage">
+                    <img src="https://i.imgur.com/lNxR3MG.jpeg" alt="Responsabilidad">
+                    <div class="overlay">
+                        <h2>RESPONSABILIDAD</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="containerimage">
+                    <img src="https://i.imgur.com/A3ZvUc6.jpeg" alt="Humildad">
+                    <div class="overlay">
+                        <h2>HUMILDAD</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="hero-image">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 hidden-xs">
+                        <div class="hero-text">
+                            <h1>NOS ENCONTRAMOS EN EL GIMNASIO CENTRAL DE LA FES IZTACALA.</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="boxOferta">
+                            <div class="hero-text visible-xs">
+                                <h1>NOS ENCONTRAMOS EN EL GIMNASIO CENTRAL DE LA FES IZTACALA</h1>
+                            </div>
+                            <ul class="center-cinta">
+                                <li>
+                                    <a href="javascript:void(0);" onclick="abrirPopup('https://i.imgur.com/JRuQd5G.jpeg')" style="color: #002D72;">Acude al gimnasio (haz click)</a>
+                                    <div class="horario" style="color: #002D72;">🏛️ Tramita tu credencial deportiva y empieza a ENTRENAR</div>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" onclick="abrirPopup('https://i.imgur.com/Qn88jpB.jpeg')" style="color: #002D72;">Entrenamientos (haz click)</a>
+                                    <div class="horario" style="color: #002D72;"><strong style="color: #002D72;">📅 HORARIOS:</strong><br> LUNES, MIÉRCOLES Y VIERNES: 1:00 PM - 3:00 PM<br> MARTES Y JUEVES: 2:00 PM - 4:00 PM</div>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" onclick="abrirPopup('https://i.imgur.com/yX6EgKG.jpeg')" style="color: #002D72;">Entrenador (haz click)</a>
+                                    <div class="Entrena" style="color: #002D72;">🥋 GONZALO GARCIA DIAZ SANDI</div>
+                                    <div class="Entrena" style="color: #002D72;"> - LICENCIADO EN PSICOLOGIA</div>
+                                    <div class="Entrena" style="color: #002D72;"> - LICENCIADO EN ENTRENAMIENTO DEPORTIVO</div>
+                                    <div class="Entrena" style="color: #002D72;"> - MAESTRÍA EN CIENCIAS DEL DEPORTE</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <div class="footerBottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>&copy; 2026 Taekwondo FES Iztacala. Todos los derechos reservados.<br>
+                        FES Iztacala, UNAM. Av. de los Barrios No. 1, Los Reyes Iztacala, 54090 Estado de México.</p>
+                        
+                        <div class="redes-sociales" id="redes">
+                            <a href="https://www.instagram.com/fesi_04tkd?igsh=MWxiZDh6am9yaXZtbA==" target="_blank" class="instagram">
+                                <div class="icon">
+                                    <i class="fab fa-instagram"></i>
+                                </div>
+                                <div class="label">INSTAGRAM</div>
+                            </a>
+                            <a href="https://www.tiktok.com/@gonzalo_tkd" target="_blank" class="tiktok">
+                                <div class="icon">
+                                    <i class="fab fa-tiktok"></i>
+                                </div>
+                                <div class="label">TIKTOK</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a id="top" href="#top" style="display: none;">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+
+    <!-- Popup para imágenes -->
+    <div id="imagePopup" class="image-popup" onclick="cerrarPopup()">
+        <span class="close-popup" onclick="cerrarPopup()">&times;</span>
+        <img id="popupImage" src="" alt="Imagen">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
     <script>
-        // Sanitización de contenido dinámico (anti-XSS)
-        document.querySelectorAll('.floating-image img').forEach(img => {
-            img.alt = DOMPurify.sanitize(img.alt);
-        });
-
-        // Efecto de parallax seguro
-        document.addEventListener('mousemove', function(e) {
-            const heroBg = document.querySelector('.hero-bg');
-            const x = (window.innerWidth - e.pageX * 2) / 100;
-            const y = (window.innerHeight - e.pageY * 2) / 100;
-            heroBg.style.transform = `translateX(${x}px) translateY(${y}px)`;
-        });
-
-        // TipoWriter seguro (sin innerHTML)
-        function typeWriter() {
-            const title = document.querySelector('.main-title');
-            const text = title.textContent;
-            title.textContent = '';
-            
-            let i = 0;
-            function type() {
-                if (i < text.length) {
-                    title.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(type, 50);
+        $(document).ready(function() {
+            // Navbar scroll effect
+            $(window).scroll(function() {
+                var scroll = $(window).scrollTop();
+                if (scroll >= 150) {
+                    $('.navbar-default').addClass('navbar-shrink');
+                    $('#top').fadeIn();
+                } else {
+                    $('.navbar-default').removeClass('navbar-shrink');
+                    $('#top').fadeOut();
                 }
-            }
-            type();
-        }
-        window.addEventListener('load', typeWriter);
+            });
 
-        // CSRF Token (para futuros formularios)
-        const csrfToken = crypto.getRandomValues(new Uint32Array(1))[0].toString(16);
-        sessionStorage.setItem('csrf_token', csrfToken);
+            // Smooth scroll corregido
+            $("a[href^='#']").click(function(e) {
+                e.preventDefault();
+                var targetId = $(this).attr('href');
+                if (targetId === '#') return;
+                var target = $(targetId).offset().top - 70;
+                $('html, body').animate({scrollTop: target}, 800);
+            });
+
+            // Scroll to top
+            $('#top').click(function() {
+                $('html, body').animate({scrollTop: 0}, 800);
+            });
+
+            // Fade in animation
+            function fadeInOnScroll() {
+                $('.fade-in').each(function() {
+                    var elementTop = $(this).offset().top;
+                    var elementBottom = elementTop + $(this).outerHeight();
+                    var viewportTop = $(window).scrollTop();
+                    var viewportBottom = viewportTop + $(window).height();
+                    if (elementBottom > viewportTop && elementTop < viewportBottom) {
+                        $(this).addClass('visible');
+                    }
+                });
+            }
+            $(window).scroll(fadeInOnScroll);
+            fadeInOnScroll();
+        });
+
+        // Funciones para el popup de imágenes
+        function abrirPopup(url) {
+            const popup = document.getElementById('imagePopup');
+            const img = document.getElementById('popupImage');
+            img.src = url;
+            popup.classList.add('show');
+        }
+
+        function cerrarPopup() {
+            const popup = document.getElementById('imagePopup');
+            popup.classList.remove('show');
+        }
+
+        // Cerrar con tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                cerrarPopup();
+            }
+        });
     </script>
 </body>
 </html>
